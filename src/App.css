@@ -1,38 +1,509 @@
-.App {
-  text-align: center;
+/* ================= GLOBAL ================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+/* ================= THEME ================= */
+.light {
+  background-color: #ffffff;
+  color: #000;
   min-height: 100vh;
+}
+
+.dark {
+  background-color: #121212;
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+.light, .dark {
+  transition: all 0.3s ease;
+}
+
+/* ================= REUSABLE CARD ================= */
+.card {
+  background: #ffffff;
+  color: #000;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  margin: 15px 0;
+}
+
+.dark .card {
+  background: #1e1e1e;
+  color: #fff;
+}
+
+/* ================= HEADER ================= */
+.header-actions {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2000;
+}
+
+.menu-dots {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  padding: 10px;
+  background: rgba(255, 77, 109, 0.1);
+  border-radius: 50%;
+}
+
+.menu-dots span {
+  width: 6px;
+  height: 6px;
+  background-color: #ff4d6d;
+  border-radius: 50%;
+}
+
+/* Dropdown */
+.nav-links {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background: #ffffff;
+  width: 180px;
+  border-radius: 12px;
+  list-style: none;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+.dark .nav-links {
+  background: #1e1e1e;
+}
+
+.nav-links.active {
+  display: flex;
+}
+
+.nav-links li a {
+  color: inherit;
+  padding: 15px 20px;
+  text-decoration: none;
+  display: block;
+  font-size: 15px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.nav-links li a:hover {
+  background-color: #fff0f3;
+  color: #ff4d6d;
+}
+
+/* ================= HOME ================= */
+.home-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.slider-section {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 35px;
+}
+
+.image-wrapper {
+  height: 400px;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+.main-slider-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dots-container {
+  margin-top: 15px;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #ccc;
+  border-radius: 50%;
+}
+
+.dot.active {
+  background: #ff4d6d;
+  width: 25px;
+  border-radius: 10px;
+}
+
+.brand-title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.brand-subtext {
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+/* ================= FEEDBACK ================= */
+.feedback-card {
+  width: 100%;
+  max-width: 450px;
+}
+
+.star-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 40px;
+}
+
+.star-btn.on { color: #ffcc00; }
+.star-btn.off { color: #ccc; }
+
+/* ================= CREATION ================= */
+.creation {
+  text-align: center;
+}
+
+.creation .video-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 20px;
+}
+
+.creation .video-card {
+  width: 80%;
+  max-width: 700px;
+}
+
+.creation iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 15px;
+}
+
+/* ================= ABOUT ================= */
+.about-container {
+  max-width: 900px;
+  margin: 80px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.about-container .quote {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
+
+.about-container h1 {
+  font-size: 2.6rem;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.about-container h3 {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  opacity: 0.9;
+}
+
+.about-container p {
+  max-width: 750px;
+  margin: 0 auto 30px;
+  line-height: 1.8;
+  font-size: 15px;
+  opacity: 0.85;
+}
+
+/* ── 2×2 grid for the 4 highlight cards ── */
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+  .highlights-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Each highlight card ── */
+.highlight-card {
+  padding: 24px 20px;
+  border-radius: 16px;
+  text-align: left;
+  border-left: 5px solid #ff4d6d;
+
+  /* Light mode */
+  background: #fff5f7;
+  border-top: 1px solid #ffe0e6;
+  border-right: 1px solid #ffe0e6;
+  border-bottom: 1px solid #ffe0e6;
+  box-shadow: 0 4px 16px rgba(255, 77, 109, 0.07);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Dark mode fix — was missing, cards stayed white */
+.dark .highlight-card {
+  background: #1a1a1a;
+  border-top: 1px solid rgba(255, 77, 109, 0.12);
+  border-right: 1px solid rgba(255, 77, 109, 0.12);
+  border-bottom: 1px solid rgba(255, 77, 109, 0.12);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.highlight-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(255, 77, 109, 0.13);
+}
+
+.highlight-card h4 {
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ff4d6d;
+}
+
+.highlight-card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.75;
+  opacity: 0.82;
+}
+
+/* FORCE DARK BACKGROUND FULL APP */
+.dark {
+  background-color: #0f0f0f !important;
+}
+
+/* remove any white fallback sections */
+section, div {
+  transition: background 0.3s ease;
+}
+
+.dark section {
+  background-color: transparent;
+}
+
+/* ================= CONTACT ================= */
+.contact-container {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.contact-heading {
+  margin-bottom: 25px;
+}
+
+.contact-card {
+  max-width: 400px;
+  margin: auto;
+}
+
+.contact-photo img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.contact-info-box p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.contact-info-box a {
+  color: #ff4d6d;
+  text-decoration: none;
+}
+
+.contact-info-box a:hover {
+  text-decoration: underline;
+}
+
+.dark .contact-container {
+  background-color: #121212;
+}
+
+/* ================= WHATSAPP BUTTON ================= */
+.whatsapp-btn {
+  padding: 10px 20px;
+  background: #25D366;
   color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  animation: pulse 2s infinite;
 }
 
-.App-link {
-  color: #61dafb;
+/* ================= REVIEWS SECTION ================= */
+.reviews-section {
+  padding: 50px 20px;
+  text-align: center;
 }
 
-@keyframes App-logo-spin {
+.reviews-heading {
+  margin-bottom: 25px;
+}
+
+.reviews-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.review-card {
+  max-width: 400px;
+  width: 100%;
+}
+
+.review-text {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.review-name {
+  font-weight: bold;
+  opacity: 0.8;
+}
+
+/* ================= LOCATION ================= */
+.location-section {
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.location-card {
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+.location-heading {
+  margin-bottom: 10px;
+}
+
+.location-address {
+  margin-bottom: 20px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.map-container iframe {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* ================= ANIMATION ================= */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+@keyframes slideUp {
   from {
-    transform: rotate(0deg);
+    transform: translateY(40px);
+    opacity: 0;
   }
   to {
-    transform: rotate(360deg);
+    transform: translateY(0);
+    opacity: 1;
   }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .brand-title { font-size: 1.8rem; }
+  .image-wrapper { height: 300px; }
+}
+
+/* ================= PRICING ================= */
+.pricing-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  padding: 30px 20px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.price-card {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  border-radius: 16px;
+  text-align: left;
+
+  /* Light mode */
+  background: #ffffff;
+  border: 1px solid #ffe0e6;
+  box-shadow: 0 6px 20px rgba(255, 77, 109, 0.08);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Dark mode fix */
+.dark .price-card {
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 77, 109, 0.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.price-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 32px rgba(255, 77, 109, 0.15);
+}
+
+/* Header icon */
+.price-header {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Service name — was #e0e0e0 (invisible on white), now inherits theme color */
+.price-card .service {
+  font-size: 14px;
+  font-weight: 600;
+  color: inherit;
+  opacity: 0.9;
+  margin-bottom: 10px;
+}
+
+/* Price badge */
+.price-card .price {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
+  padding: 4px 14px;
+  border-radius: 30px;
+  letter-spacing: 0.5px;
 }

@@ -1,0 +1,96 @@
+/* ================= CONTACT PAGE ================= */
+.contact-container {
+  padding: 30px 15px;
+  text-align: center;
+  background-color: #f4f6f9;
+  min-height: 80vh;
+}
+
+.contact-heading {
+  font-size: 28px;
+  color: #ff4d6d;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+/* PHOTO STYLING */
+.contact-photo {
+  margin: 0 auto 20px;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.contact-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.3s;
+}
+
+.contact-photo img:hover {
+  transform: scale(1.05);
+}
+
+/* INFO BOX */
+.contact-info-box {
+  max-width: 95%;
+  margin: 0 auto;
+  padding: 20px 15px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: left;
+  line-height: 1.5;
+  font-size: 14px;
+  color: #333;
+  transition: 0.3s;
+}
+
+.contact-info-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.contact-info-box p {
+  margin: 10px 0;
+}
+
+.contact-info-box a {
+  color: #ff4d6d;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.contact-info-box a:hover {
+  text-decoration: underline;
+  color: #ff8fa3;
+}
+
+/* RESPONSIVE */
+@media only screen and (max-width: 768px) {
+  .contact-heading {
+    font-size: 24px;
+  }
+  .contact-photo {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .contact-heading {
+    font-size: 22px;
+  }
+  .contact-photo {
+    width: 120px;
+    height: 120px;
+  }
+  .contact-info-box {
+    padding: 15px 10px;
+    font-size: 13px;
+  }
+}
