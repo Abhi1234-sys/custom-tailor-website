@@ -1,4 +1,3 @@
-
 import Location from "../components/Location";
 import Reviews from "../components/Reviews";
 import React, { useState, useEffect } from 'react';
@@ -34,9 +33,6 @@ const Home = () => {
   return (
     <div className="home-container">
       
-      
-      
-
       {/* Image Slider */}
       <div className="slider-section">
         <div className="image-wrapper">
@@ -60,6 +56,12 @@ const Home = () => {
       {/* Hero Section */}
       <div className="hero-content">
         <h1 className="brand-title">Umazzz Stitching</h1>
+        
+        {/* ⭐ নতুন কোর্স ব্যাজ */}
+        <div className="hero-tagline-badge">
+          <span>🎓 নতুন ব্যাচ শুরু: ৬ মাসের অনলাইন ও অফলাইন কোর্স</span>
+        </div>
+
         <p className="brand-subtext">
           Hi, I'm a proud home-based designer who believes every outfit tells a story. 
           I create modern, stylish, and perfectly fitted blouses with love and dedication.
@@ -88,10 +90,9 @@ const Home = () => {
         {rating > 0 && <p className="thank-you">Thank you for rating us {rating} stars!</p>}
       </div>
 
-      {/* ⭐ NEW: Customer Reviews Section */}
+      {/* Customer Reviews Section */}
       <Reviews />
       <Location />
-      
 
     </div>
   );

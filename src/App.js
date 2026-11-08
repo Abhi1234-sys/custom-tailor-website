@@ -9,24 +9,25 @@ import Contact from "./pages/Contact";
 import Pricing from "./pages/Pricing";
 import Navbar from "./components/Navbar";
 import { FaWhatsapp } from "react-icons/fa";
+import AnnouncementBar from "./components/AnnouncementBar";
 
 function App() {
   const [showPopup, setShowPopup] = useState(false);
   const [darkMode, setDarkMode] = useState(() => {
-  return localStorage.getItem("theme") === "dark";
-});
+    return localStorage.getItem("theme") === "dark";
+  });
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowPopup(true);
-    }, 5000);
+    }, 3000); // পেজ লোড হওয়ার ৩ সেকেন্ড পর কোর্স পপ-আপ আসবে
 
     return () => clearTimeout(timer);
   }, []);
-   
+    
   useEffect(() => {
-  localStorage.setItem("theme", darkMode ? "dark" : "light");
-}, [darkMode]);
+    localStorage.setItem("theme", darkMode ? "dark" : "light");
+  }, [darkMode]);
 
   return (
     <BrowserRouter>
@@ -50,6 +51,9 @@ function App() {
           {darkMode ? "☀️" : "🌙"}
         </button>
 
+        {/* ⭐ Top Announcement Bar */}
+        <AnnouncementBar />
+
         <Navbar />
 
         <Routes>
@@ -60,57 +64,73 @@ function App() {
           <Route path="/pricing" element={<Pricing />} />
         </Routes>
 
-        {/* ✅ Auto Popup (NOW DARK MODE SUPPORT) */}
+        {/* ⭐ Center Popup for 6 Months Sewing Course */}
         {showPopup && (
           <div
             style={{
               position: "fixed",
-              bottom: "100px",
-              right: "20px",
-              width: "260px",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "90%",
+              maxWidth: "380px",
               backgroundColor: darkMode ? "#1e1e1e" : "white",
               color: darkMode ? "#fff" : "#000",
-              padding: "15px",
-              borderRadius: "10px",
-              boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
-              zIndex: 1000,
-              animation: "slideUp 0.5s ease",
+              padding: "25px",
+              borderRadius: "12px",
+              boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
+              zIndex: 9999,
+              textAlign: "center",
+              animation: "fadeIn 0.3s ease",
             }}
           >
             <div
               style={{
                 position: "absolute",
-                top: "5px",
-                right: "10px",
+                top: "12px",
+                right: "15px",
                 cursor: "pointer",
                 fontWeight: "bold",
+                fontSize: "18px",
               }}
               onClick={() => setShowPopup(false)}
             >
               ✖
             </div>
 
-            <p style={{ fontSize: "14px", marginBottom: "10px" }}>
-              Hi 👋 Need stitching help?
-            </p>
-
-            <a
-              href="https://wa.me/919851167574?text=Hello%20Umazzz%20Stitching!"
-              target="_blank"
-              rel="noopener noreferrer"
+            <span
               style={{
-                display: "block",
-                backgroundColor: "#25D366",
-                color: "white",
-                textAlign: "center",
-                padding: "8px",
-                borderRadius: "5px",
-                textDecoration: "none",
+                backgroundColor: "#e63946",
+                color: "#fff",
+                padding: "4px 12px",
+                borderRadius: "20px",
+                fontSize: "12px",
+                fontWeight: "bold",
+              }}
+            >
+              বিশেষ ঘোষণা
+            </span>
+            <h3 style={{ margin: "15px 0 10px 0", color: darkMode ? "#fff" : "#1d3557" }}>
+              ৬ মাসের সেলাই কোর্স!
+            </h3>
+            <p style={{ fontSize: "14px", opacity: 0.9, marginBottom: "20px", lineHeight: "1.5" }}>
+              এখন থেকে আমাদের এখানে অনলাইন ও অফলাইন উভয় মাধ্যমেই প্রফেশনাল সেলাই কোর্স করানো হচ্ছে। আজই যোগাযোগ করুন!
+            </p>
+            <button
+              onClick={() => setShowPopup(false)}
+              style={{
+                backgroundColor: "#1d3557",
+                color: "#fff",
+                border: "none",
+                padding: "10px 25px",
+                borderRadius: "6px",
+                cursor: "pointer",
+                fontWeight: "600",
                 fontSize: "14px",
               }}
             >
-              Chat on WhatsApp
-            </a>
+              ঠিক আছে
+            </button>
           </div>
         )}
 

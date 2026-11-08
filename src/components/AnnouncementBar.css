@@ -1,0 +1,10 @@
+.announcement-bar {
+  background-color: #ffb703;
+  color: #000;
+  text-align: center;
+  padding: 8px 10px;
+  font-size: 14px;
+  font-weight: 600;
+  position: relative;
+  z-index: 1001;
+}
